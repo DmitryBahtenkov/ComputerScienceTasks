@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import Protocol, TypeVar, Iterable, Sequence, Generic, List, Callable, Set, Deque, Dict, Any, Optional
 from heapq import heappop, heappush
 from DataStructures.stack import Stack
+from DataStructures.queue import Queue
 
 T = TypeVar('T')
 
@@ -88,3 +89,22 @@ def node_to_path(node: Node[T]) -> List[T]:
     
     path.reverse()
     return path
+
+
+def bfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
+    frontier: Queue[T] = Queue()
+    frontier.push(Node(initial, None))
+    explored: Set[T] = {initial}
+
+    while not frontier.empty:
+        current_node: Node[T] = frontier.pop()
+        current_state: T = current_node.state
+        if(goal_test(current_state)):
+            return current_node
+        
+        for child in successors(current_state):
+            if child in explored: continue
+            explored.add(child)
+            frontier.push(Node(child, current_node))
+
+    return None
