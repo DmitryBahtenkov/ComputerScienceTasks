@@ -1,6 +1,13 @@
-from SimpleTasks.unbreakable_encryption import *
+from SearchTasks.maze import *
 
 if __name__ == '__main__':
-    k1, k2 = encrypt("Hello there!")
-    result: str = decrypt(k1, k2)
-    print(result)
+    maze: Maze = Maze()
+    print(maze)
+    print('____________')
+    solution: Optional[Node[MazeLocation]] = dfs(maze.start, maze.goal_test, maze.successors)
+    if solution is None:
+        print("No solution")
+    else:
+        path: List[MazeLocation] = node_to_path(solution)
+        maze.mark(path)
+        print(maze)
