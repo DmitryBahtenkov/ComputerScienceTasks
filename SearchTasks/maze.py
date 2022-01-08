@@ -81,3 +81,9 @@ class Maze:
                     
         self._grid[self.start.row][self.start.column] = Cell.START
         self._grid[self.goal.row][self.goal.column] = Cell.GOAL
+
+
+def euclidean_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
+    def d(ml: MazeLocation):
+        pass
+    return d
