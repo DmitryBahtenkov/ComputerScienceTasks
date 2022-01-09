@@ -14,7 +14,7 @@ class PriorityQueue(Generic[T]):
 
     
     def pop(self) -> T:
-        heappop(self._container)
+        return heappop(self._container)
 
     
     @property
