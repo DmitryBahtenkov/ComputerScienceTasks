@@ -1,15 +1,15 @@
-from SearchTasks.maze import *
+from SearchTasks.missionaries import *
 
 if __name__ == '__main__':
-    maze: Maze = Maze()
-    print(maze)
+    
+    start: MCState = MCState(MAX_NUM, MAX_NUM, True)
+    print(start)
     print('____________')
+    
+    solution: Optional[Node[MCState]] = bfs(start, MCState.goal_test, MCState.successors)
 
-    distance: Callable[[MazeLocation], float] = manhattan_distance(maze.goal)
-    solution: Optional[Node[MazeLocation]] = astar(maze.start, maze.goal_test, maze.successors, distance)
     if solution is None:
         print("No solution")
     else:
-        path: List[MazeLocation] = node_to_path(solution)
-        maze.mark(path)
-        print(maze)
+        path: List[MCState] = node_to_path(solution)
+        display_solution(path)
