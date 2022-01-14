@@ -1,4 +1,4 @@
-from GraphTasks.weighted_graph import *
+from GraphTasks.mst import *
 
 if __name__ == '__main__':
     main()
